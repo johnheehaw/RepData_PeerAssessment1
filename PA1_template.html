@@ -225,7 +225,7 @@ hist(stepsPerDay$steps,main=&quot;Figure 1. Total Steps Per Day&quot;,xlab = &qu
 medianSteps &lt;- median(stepsPerDay$steps, na.rm = TRUE)
 </code></pre>
 
-<p>The mean number of steps per day is 9354.2295082 and the median number of steps per day is 10395.</p>
+<p>The mean number of steps per day is 9354.2295082 and the median number of steps per day is 10395. [Aside: I wish I knew how to format these passed variables. It&#39;s not ideal here but it gets worse later!]</p>
 
 <p>###Average Daily Activity Pattern</p>
 
@@ -276,15 +276,13 @@ hist(totalStepsImputed,main=&quot;Total Steps Per Day, with Imputed Values for N
 <p>Comparing Figure 1 (original data with NAs) with Figure 2 (imputed data for NAs) we can see that imputing data in this particular manner causes an increase in the total number of steps per day. This is borne out when comparing the means and medians:</p>
 
 <p>The mean ignoring NAs was 9354.2295082 whereas with imputing NAs it is 1.0766189 &times; 10<sup>4</sup>.
-The median ignoring NAs was 10395 whereas with imputing NAs it is 1.0766189 &times; 10<sup>4</sup>. (Man, that&#39;s ugly. I can&#39;t figure out how to change the number format of these passed variables so that both sets display similarly - they are similar figures but the imputed are displayed for an unknown reason in scientific format X.XX x 10<sup>4</sup> instead of XX,XXX. DANG! Sorry.).</p>
+The median ignoring NAs was 10395 whereas with imputing NAs it is 1.0766189 &times; 10<sup>4</sup>. [Aside: This is ugly. I can&#39;t figure out how to change the number format of these passed variables so that both sets display similarly - they are similar figures but for some reason one number displays normally and the other in scientific format. DANG&hellip; Sorry!).</p>
 
 <p>It is not surprising that the imputed are higher considering we are replacing missing values with the mean which is obviously higher than a missing value. It is difficult to say whether or not missing measurements or NAs introduce bias. If for example they represent periods of inactivity, such as the middle of the night when subjects are asleep, then the dataset with NAs are likely a better representation of step patterns.</p>
 
 <p>##Activity patterns on weekdays vs weekends</p>
 
-<p>To explore this I&#39;ll add whether or not each day is a weekend day or not. Weekend days are conveniently the only days that begin with &#39;S&#39; so I will use GREP to mark these records as weekend days.</p>
-
-<p>Make a panel plot containing a time series plot (i.e. type = &ldquo;l&rdquo;) of the 5-minute interval (x-axis) and the average number of steps taken, averaged across all weekday days or weekend days (y-axis). See the README file in the GitHub repository to see an example of what this plot should look like using simulated data.</p>
+<p>To explore whether there&#39;s a difference between the number of steps on weekend days versus week days I&#39;ll add whether or not each day is a weekend day or not. Weekend days are conveniently the only days that begin with &#39;S&#39; so I will use GREP to mark these records as weekend days. Then I&#39;ll create a panel plot that allows us to compare steps in each day type one over the other.</p>
 
 <pre><code class="r">isWeekend &lt;- grepl(&quot;^[Ss]&quot;, weekdays(as.Date(activity$date)))
 actsetImputed$dayType &lt;- isWeekend
